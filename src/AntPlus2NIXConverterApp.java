@@ -110,6 +110,7 @@ public class AntPlus2NIXConverterApp {
 			if (consoleReader.ready()) {
 				buffWriter.write("Q\n");
 				buffWriter.flush();
+				consoleReader.readLine();
 				System.out.println("Reading finished");
 				break;
 			}
@@ -133,7 +134,8 @@ public class AntPlus2NIXConverterApp {
 			OdMLData metaData = new OdMLData("", "", new String[1], deviceNumber, 0, 0, manufacturerID, new int[1], 0);
 			AntHeartRate heartRate = new AntHeartRate(heartBeatCountArray, computedHeartRateArray,
 					heartBeatEventTimeArray, metaData);
-			File nixFile = File.open("nixFileExample.h5", FileMode.Overwrite);
+			System.out.println("Type the name of the output file (without the .h5 ending)");
+			File nixFile = File.open(consoleReader.readLine() + ".h5", FileMode.Overwrite);
 			heartRate.fillNixFile(nixFile);
 		}
 	}
