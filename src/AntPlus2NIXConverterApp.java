@@ -90,6 +90,7 @@ public class AntPlus2NIXConverterApp {
 					System.out.println(error);
 				}
 			}
+			System.out.println("Type any word to end collecting data.");
 			readData(subProcessInputReader, consoleReader, buffWriter);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -122,14 +123,19 @@ public class AntPlus2NIXConverterApp {
 			}
 		}
 		
-		int[] computedHeartRateArray = convertToArrayInt(computedHeartRate);
-		int[] heartBeatCountArray = convertToArrayInt(heartBeatCount);
-		double[] heartBeatEventTimeArray = convertToArrayDouble(heartBeatEventTime);
-		
-		OdMLData metaData = new OdMLData("", "", new String[1], deviceNumber, 0, 0, manufacturerID, new int[1], 0);
-		AntHeartRate heartRate = new AntHeartRate(heartBeatCountArray, computedHeartRateArray, heartBeatEventTimeArray,	metaData);
-		File nixFile = File.open("nixFileExample.h5", FileMode.Overwrite);
-		heartRate.fillNixFile(nixFile);
+		if (computedHeartRate.size() == 0 || heartBeatCount.size() == 0 || heartBeatEventTime.size() == 0) {
+			System.out.println("No data were collected!");
+		} else {
+			int[] computedHeartRateArray = convertToArrayInt(computedHeartRate);
+			int[] heartBeatCountArray = convertToArrayInt(heartBeatCount);
+			double[] heartBeatEventTimeArray = convertToArrayDouble(heartBeatEventTime);
+
+			OdMLData metaData = new OdMLData("", "", new String[1], deviceNumber, 0, 0, manufacturerID, new int[1], 0);
+			AntHeartRate heartRate = new AntHeartRate(heartBeatCountArray, computedHeartRateArray,
+					heartBeatEventTimeArray, metaData);
+			File nixFile = File.open("nixFileExample.h5", FileMode.Overwrite);
+			heartRate.fillNixFile(nixFile);
+		}
 	}
 
     public double[] convertToArrayDouble(ArrayList<Double> list){
