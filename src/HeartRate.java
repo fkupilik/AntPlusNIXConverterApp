@@ -9,6 +9,12 @@ import org.g_node.nix.FileMode;
 import cz.zcu.AntPlus2NIXConverter.Data.OdMLData;
 import cz.zcu.AntPlus2NIXConverter.Profiles.AntHeartRate;
 
+/**
+ * Class gets heart rate data from output of the heart rate demo.
+ * @author Filip Kupilík, Petr Tobiáš, Václav Janoch
+ *
+ */
+
 public class HeartRate implements IParse{
 	
 	private ArrayList<Integer> computedHeartRate, heartBeatCount;
@@ -16,6 +22,12 @@ public class HeartRate implements IParse{
 	private int deviceNumber;
 	int index = 0;
 	
+	/**
+	 * Overriden method from IParse interface.
+	 * Gets computed heart rate, heart beat count and time of previous heart beat 
+	 * from output line of the demo.
+	 * @param line output line of the demo
+	 */
 	@Override
 	public void parseLine(String line) {
 		// TODO Auto-generated method stub
@@ -37,6 +49,11 @@ public class HeartRate implements IParse{
 		}
 	}
 
+	/**
+	 * Overriden method from IParse intefrace.
+	 * Parses lines from the loaded data from sensor.
+	 * @param data loaded data from heart rate sensor
+	 */
 	@Override
 	public void parseList(ArrayList<String> data) {
 		// TODO Auto-generated method stub
@@ -79,6 +96,11 @@ public class HeartRate implements IParse{
 		}
 	}
 	
+	/**
+	 * Converts list of doubles to array of doubles
+	 * @param list list
+	 * @return array 
+	 */
     public double[] convertToArrayDouble(ArrayList<Double> list){
         double[] array = new double[list.size()];
         for(int i = 0; i < array.length; i++){
@@ -88,6 +110,11 @@ public class HeartRate implements IParse{
         return array;
     }
     
+	/**
+	 * Converts list of integers to array of integers
+	 * @param list list
+	 * @return array 
+	 */
     public int[] convertToArrayInt(ArrayList<Integer> list){
         int[] array = new int[list.size()];
         for(int i = 0; i < array.length; i++){
@@ -97,6 +124,11 @@ public class HeartRate implements IParse{
         return array;
     }
 	
+    /**
+     * Gets manufacturerID from output line from the demo
+     * @param line output line from the demo
+     * @return manufacturerID
+     */
 	private int getManufacturerID(String line){
 		String[] split1 = line.split(" : ");
 		String[] split2 = split1[1].split(" , ");
