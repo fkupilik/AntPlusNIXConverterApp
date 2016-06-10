@@ -14,11 +14,15 @@ Software requirements:
   - ANT+ USB stick and sensor
   
 After you are done with requirements you have to probably replace paths to libraries in build.xml with your own paths.
-Than you can run app from your root folder with command:
+Than you can create an execuble JAR file from your root folder with command:
 
 ```
 > ant
 
 ```
-  
+Now the runnable AntPlus2NIXConverterApp.jar is done. You can run it with command:
+```
+> java -jar AntPlus2NIXConverterApp.jar
+
+```
 
