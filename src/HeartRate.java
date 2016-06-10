@@ -79,7 +79,7 @@ public class HeartRate implements IParse{
 			int[] computedHeartRateArray = convertToArrayInt(computedHeartRate);
 			int[] heartBeatCountArray = convertToArrayInt(heartBeatCount);
 			double[] heartBeatEventTimeArray = convertToArrayDouble(heartBeatEventTime);
-
+			
 			OdMLData metaData = new OdMLData("", "", new String[1], deviceNumber, 0, 0, manufacturerID, new int[1], 0);
 			AntHeartRate heartRate = new AntHeartRate(heartBeatCountArray, computedHeartRateArray,
 					heartBeatEventTimeArray, metaData);
@@ -106,7 +106,6 @@ public class HeartRate implements IParse{
         for(int i = 0; i < array.length; i++){
             array[i] = list.get(i);
         }
-
         return array;
     }
     
